@@ -16,6 +16,8 @@ export const userService = {
     logout,
     getUserInfo,
     getAll,
+    getStudents,
+    getTutors,
 };
 
 function login(username, password) {
@@ -47,4 +49,10 @@ function getAll() {
 function getUserInfo() {
     return fetchWrapper.get(userBaseUrl+'/me');
 
+}
+function getStudents() {
+    return fetchWrapper.get(userBaseUrl+'/by?role=STUDENT');
+}
+function getTutors() {
+    return fetchWrapper.get(userBaseUrl+'/by?role=TUTOR');
 }
