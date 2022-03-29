@@ -15,7 +15,7 @@ public class CorsConfig {
 
     //ACCEPT ONLY THE SPECIFIED ORIGINS
     @Bean
-    CorsFilter corsFilter(@Value("https://backend-grades-luismateoh.cloud.okteto.net") List<String> allowedOrigins) {
+    CorsFilter corsFilter(@Value("https://frontend-grades-luismateoh.cloud.okteto.net") List<String> allowedOrigins) {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
