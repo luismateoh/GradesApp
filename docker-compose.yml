@@ -1,0 +1,41 @@
+version: '3'
+services:
+  db_postgres:
+    image: postgres:14.0
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: db_postgres
+      POSTGRES_HOST: db_postgres
+    volumes:
+        - postgres_vl:/var/lib/postgresql
+
+  backend:
+    build: 
+      context: backend/.
+    restart : always
+    ports:
+      - "8080:8080"
+    networks:
+      - grnet
+    depends_on:
+      - db_postgres
+
+  frontend: 
+    build: 
+      context: frontend/.
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - grnet
+      
+networks:
+  grnet:
+
+volumes:
+  postgres_vl:
+
